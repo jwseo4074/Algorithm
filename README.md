@@ -1,3 +1,3 @@
-# Studying Data With Python
+# Studying Algorithm With Python
 
-## Analyzing data using Python ! !
+## Baekjoon - Python
