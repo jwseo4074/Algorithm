@@ -1,1 +1,3 @@
-# StudyingData_Python
+# Studying Data With Python
+
+## Analyzing data using Python ! !
