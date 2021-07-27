@@ -1,9 +1,7 @@
 inputnum = int(input())
 dp = [0 for _ in range(101)]
 
-dp[1] = 1
-dp[2] = dp[1]
-dp[3] = dp[1]
+dp[1] = dp[2] = dp[3] = 1
 dp[4] = dp[1] + dp[3]
 dp[5] = dp[4]
 
