@@ -1,0 +1,6 @@
+X = input()
+print(X, type(X))
+X = int(X)
+print(X, type(X))
+X = str(X)
+print(X, type(X))
