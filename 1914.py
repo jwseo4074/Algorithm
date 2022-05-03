@@ -73,8 +73,8 @@ def FuncA(start, end, temp, N):
         FuncA(start, temp, end, N-1)
         # 무조건 end(3)이 아닌 쪽으로 옮겨놔야 해 
 
-        # FuncB()
-        print(start, end)
+        FuncB(start, end)
+        # print(start, end)
 
         FuncA(temp, end, start, N-1)
 
@@ -125,11 +125,11 @@ def FuncA(start, end, temp, N):
     # startList.pop()
     # endList.append(lastVal)
     
-def FuncB():
+def FuncB(start, end):
     # lastVal = list1[-1]
     # list1.pop()
     # list3.append(lastVal)
-    print("1 3")
+    print(start, end)
 
 # def startFunc(N):
 #     for i in range(N, 0, -1):
@@ -145,19 +145,7 @@ N = int(input())
 print((1 << N)-1)
 if N<=20 :
     FuncA(1, 3, 2, N)
+    # 시작할 때만 무조건 1에서 3으로 옮기는 게 목표
+    # 안으로 들어가서는 계속 달라지지
 
-
-# N = int(input())
-
-# def HANOI(x, y, z, cnt):
-#     if cnt == 0:
-#         return
-
-#     HANOI(x, z, y, cnt - 1)
-#     print(x,z)
-#     HANOI(y, x, z, cnt - 1)
-
-# print((1 << N) - 1)
-# if N <= 20:
-#     HANOI(1, 2, 3, N)
 
