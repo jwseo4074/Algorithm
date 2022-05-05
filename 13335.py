@@ -17,21 +17,43 @@
 # 7 4 5 6
 # 정답 : 8
 
-carList = []
-n = w = L = 0
 
-def processFunc():   
-    print(carList)
-    # 다음 값을 더하기 전에 10 - 기존의 값 해서 0보다 큰지 확인 ?
-    # 0보다 크면 한번 더 기다려, 작으면 배열에 넣어줘
 
-def inputFunc():
-    global n, w, L, carList
+n, w, L = map(int, input().split())
+carList = list(map(int, input().split()))
+onRoad = [0] * w
+# print(onRoad)
 
-    n, w, L = map(int, input().split())
-    carList = list(map(int, input().split()))
-    carList.insert(0, 0)
-    carList.insert(0, 0)
+# sumW = 0
+#  파이썬 내장 함수로 배열 안의 값들을 전부 합해주는 함수가 있다. 그걸 써본다
+totalCnt = 0
 
-inputFunc()
-processFunc()
+while(onRoad):
+    # 도로 위에 트럭이 없어질 때까지 ㄱ
+
+    onRoad.pop(0) # 앞 자리 하나 비워
+
+    if(carList):
+        # 차가 있을 때
+        oneValue = carList[0] # 이번에 다룰 차
+    
+        if sum(onRoad) + oneValue > L : # 무게 체크, 10보다 크면?
+            # sum(배열) => 배열의 무게를 자동으로 계산해줌, 이걸 왜 몰랐을까? 알면서 안쓴건가
+            onRoad.append(0)
+
+        else: # 무게 체크, 10(w)보다 작으면? 
+            onRoad.append(carList.pop(0)) # 2줄로 짤걸 한 줄로 줄여!!!!
+            # carList에서 젤 앞에 있는 놈 -> truck 빼서 도로에 올려
+    else:
+        onRoad.append(0)
+        if sum(onRoad) == 0:
+            totalCnt += 1
+            break
+    
+    # 한바퀴 돌리면 totalCnt ++
+    totalCnt += 1
+    # print(onRoad)
+    # print("totalCnt = ", totalCnt)
+    # input()
+
+print(totalCnt)
