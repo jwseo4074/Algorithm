@@ -49,6 +49,7 @@ def dfs(idx):
         for a in numList:
             print(a,'', end='')
         print()
+        return
 
     for i in range(idx, N+1):
         # if 문 도 필요가 없지
