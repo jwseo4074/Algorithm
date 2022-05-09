@@ -10,15 +10,12 @@ answerList = []
 def dfs():
     global start, end, cnt
 
-    # input()
-    # print("1 > start = ", start, "cnt = ", cnt)
-
     if start == end:
         cnt += 1
         answerList.append(cnt)
         return 
 
-    if start > end:
+    elif start > end:
         return
 
     start *= 2
@@ -28,8 +25,6 @@ def dfs():
     cnt -= 1
     start = int(start)
 
-    # print("2 > start = ", start, "cnt = ", cnt)
-
     start = str(start) + "1"
     cnt += 1
     start = int(start)
@@ -38,7 +33,6 @@ def dfs():
     start = start[0:-1]
     start = int(start)
     cnt -= 1
-    # print("3 > start = ", start, "cnt = ", cnt)
 
 dfs()
 if len(answerList) == 0:
