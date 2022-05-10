@@ -8,28 +8,23 @@
 # 일반화해서 생각하면, N번째 영화의 제목은 세상의 종말 (N번째로 작은 종말의 숫자) 와 같다.
 # 숌이 만든 N번째 영화의 제목에 들어간 숫자를 출력하는 프로그램을 작성하시오. 숌은 이 시리즈를 항상 차례대로 만들고, 다른 영화는 만들지 않는다.
 
-
-
 # 어떤 수에 6이 적어도 3개이상 연속으로 들어가는 수 4개여도 된다 5개여도 된다
 
-answer = ""
+N = int(input())
+i = 0
 cnt = 0
-originNum = 0
 
-for word in range(int(input())):
-    word = str(word)
-    if word[-1] == "6":
-        # 끝자리가 6인 경우
+answerList = []
+
+while(1):
+    word = str(i)
+
+    if "666" in word:
+        answerList.append(word)
         cnt += 1
-        continue
-    elif:
-        # 66이나 666이나~~ 들어있는 경우
-        pass
-    else:
-        originNum += 1
-    # 여기는 word = 1, 2, 3, 4, 5 ~~ 가겠지
+    if cnt == N:
+        break
+    
+    i += 1
 
-# word = int(word) - cnt
-# word = str(word) + "666"
-
-# print(word)
+print(answerList[-1])
