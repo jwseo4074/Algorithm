@@ -12,13 +12,23 @@ for _ in range(int(input())):
     for i in range(int(input())):
 
         cx, cy, r = map(int, input().split())
+        
+        # if (cx-r < x1 < cx+r) and (cy-r < y1 < cy+r) and (cx-r < x2 < cx+r) and (cy-r < y2 < cy+r):
+        #     # 둘 다 안에 있는 경우
+        #     continue
+        # if (cx-r < x1 < cx+r) and (cy-r < y1 < cy+r):
+        #     # 출발점만 안에 있는 경우
+        #     answer += 1
+        # if (cx-r < x2 < cx+r) and (cy-r < y2 < cy+r):
+        #     # 도착점만 안에 있는 경우
+        #     answer += 1
 
-        # print("cx, cy, r = ", cx, cy, r)
-
-        if x1 <= cx-r < x2 and x2 < cx+r:
-            answer += 1
-        if cx-r < x1 and x1 < cx+r <= x2:
-            answer += 1
+        if (((cx-x1)**2 + (cy-y1)**2) ** 0.5) < r:
+            if (((cx-x2)**2 + (cy-y2)**2) ** 0.5) > r:
+                answer += 1
+        if (((cx-x2)**2 + (cy-y2)**2) ** 0.5) < r:
+            if (((cx-x1)**2 + (cy-y1)**2) ** 0.5) > r:
+                answer += 1
 
     answerList.append(answer)
 
