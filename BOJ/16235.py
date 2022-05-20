@@ -49,9 +49,12 @@ def printEnergyFunc():
             print(energy[i][j], end = ' ')
         print()
 
+dieTreeList = []
+
 for i in range(K):
     # K년 동안
 
+    # print("봄 시작")
     # 봄
     for row in range(N):
         for col in range(N):
@@ -60,6 +63,12 @@ for i in range(K):
                 continue
             
             if energy[row][col] < max(tree[row][col]):
+                # 죽는 나무 체크
+
+                dieTreeList.append([row, col, max(tree[row][col])])
+                # row, col, 나이
+                # print("죽는 나무 ", dieTreeList)
+
                 tree[row][col].remove(max(tree[row][col]))
             # 양분이 부족하면 나무 죽어
 
@@ -73,12 +82,70 @@ for i in range(K):
                 # 나이 증가해주기 전에 있는 양분에서 나이만큼 줄여야지
                 
                 tree[row][col][maxIndex] += 1
-                
-    printTreeFunc()
-    printEnergyFunc()
+
+    # print()
+    # print("봄이 지나갔다")     
+    # printTreeFunc()
+    # printEnergyFunc()
     
+
+    # print("여름 시작")
     # 여름
+    for row in range(N):
+        for col in range(N):
+            for i in range(len(dieTreeList)):
+                # print("row = ", row, " col = ", col, " i = ", i)
+                if dieTreeList[i][0] == row and dieTreeList[i][1] == col:
+                    # print("추가된 양분 = ", int(dieTreeList[i][2]/2))
+                    energy[row][col] += int(dieTreeList[i][2]/2)
+    dieTreeList.clear()
+    
+    # print()
+    # print("여름이 지나갔다")     
+    # printTreeFunc()
+    # printEnergyFunc()
 
+    # print("가을 시작")
     # 가을
+    for row in range(N):
+        for col in range(N):
+            if tree[row][col] and max(tree[row][col]) % 5 == 0:
+                if row-1 >= 0 and col-1 >= 0:
+                    tree[row-1][col-1].append(1)
+                if row-1 >= 0:
+                    tree[row-1][col].append(1)
+                if row-1 >= 0 and col+1 < N:
+                    tree[row-1][col+1].append(1)
+                if col-1 >= 0:
+                    tree[row][col-1].append(1)
+                if col+1 < N:
+                    tree[row][col+1].append(1)
+                if row+1 < N and col-1 >= 0:
+                    tree[row+1][col-1].append(1)
+                if row+1 < N:
+                    tree[row+1][col].append(1)
+                if row+1 < N and col+1 < N:
+                    tree[row+1][col+1].append(1)
+    # print()
+    # print("가을이 지나갔다")     
+    # printTreeFunc()
+    # printEnergyFunc()
+    
 
+    # print("겨울 시작")
     # 겨울
+    
+    for row in range(N):
+        for col in range(N):
+            energy[row][col] += plusEnergy[row][col]
+
+    # print()
+    # print("겨울이 지나갔다")     
+    # printTreeFunc()
+    # printEnergyFunc()
+
+answer = 0
+for row in range(N):
+    for col in range(N):
+        answer += len(tree[row][col])
+print(answer)
