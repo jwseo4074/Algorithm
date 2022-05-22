@@ -26,28 +26,31 @@ for i in range(M):
     tree[row-1][col-1].append(value)
     # 입력이 2 1 3 이면 tree[1][0] = 3 
 
-# def printTreeFunc():
-#     print("Tree")
-#     for i in range(N):
-#         for j in range(N):
-#             print(tree[i][j], end = ' ')
-#         print()
+def printTreeFunc():
+    print("Tree")
+    for i in range(N):
+        for j in range(N):
+            print(tree[i][j], end = ' ')
+        print()
 
-# def printEnergyFunc():
-#     print("Energy")
-#     for i in range(N):
-#         for j in range(N):
-#             print(energy[i][j], end = ' ')
-#         print()
+def printEnergyFunc():
+    print("Energy")
+    for i in range(N):
+        for j in range(N):
+            print(energy[i][j], end = ' ')
+        print()
 
 for aaa in range(K):
-    # print("봄 시작")
+    print(aaa, " 년 -----------------------")
+    # printTreeFunc()
+    # printEnergyFunc()
+
+    print("봄 시작")
 
     # 봄, 여름 같이
 
     for row in range(N):
         for col in range(N):
-
             if not tree[row][col]:
                 # 나무가 없으면 바로 재껴
                 continue
@@ -184,6 +187,15 @@ for aaa in range(K):
     #                     if row+1 < N and col+1 < N:
     #                         tree[row+1][col+1].append(1)
     
+    print("봄, 여름 끝")
+    printTreeFunc()
+    printEnergyFunc()
+
+    print()
+
+    print("가을 시작")
+    print()
+
     for row in range(N):
         for col in range(N):
             for age in tree[row][col]:
@@ -194,13 +206,13 @@ for aaa in range(K):
                         if 0 <= nx < N and 0 <= ny < N:
                             tree[nx][ny].insert(0, 1)
 
-    # print()
-    # print("가을이 지나갔다")     
-    # printTreeFunc()
-    # printEnergyFunc()
+    print()
+    print("가을이 지나갔다")     
+    printTreeFunc()
+    printEnergyFunc()
     
 
-    # print("겨울 시작")
+    print("겨울 시작")
     # 겨울
     
     for row in range(N):
@@ -208,10 +220,10 @@ for aaa in range(K):
             if plusEnergy[row][col]:
                 energy[row][col] += plusEnergy[row][col]
 
-    # print()
-    # print("겨울이 지나갔다")     
-    # printTreeFunc()
-    # printEnergyFunc()
+    print()
+    print("겨울이 지나갔다")     
+    printTreeFunc()
+    printEnergyFunc()
 
 answer = 0
 for row in range(N):
