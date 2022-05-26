@@ -3,9 +3,9 @@ Nlist = [i for i in range(0,N)]
 
 from itertools import combinations  
 
-inputMap = []
-for i in range(N):
-    inputMap.append(list(map(int, input().split())))
+# inputMap = []
+# for i in range(N):
+#     inputMap.append(list(map(int, input().split())))
 
 minVal = 1e9
 
@@ -20,10 +20,14 @@ cnt = 0
 totalList = []
 combiList = list(combinations(Nlist, int(N/2)))
 
+print(combiList)
+
 for oneVal in combiList:
     startTeam = list(oneVal)
     linkTeam = [x for x in Nlist if x not in startTeam]
     totalList.append([startTeam, linkTeam])
+
+print(totalList)
 
 def funcProcess():
     global minVal
@@ -59,6 +63,6 @@ def funcProcess():
         # 최소값 구하기
         # print("minVal = ", minVal)
 
-funcProcess()
-print(minVal)
+# funcProcess()
+# print(minVal)
 
