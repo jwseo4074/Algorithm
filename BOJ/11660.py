@@ -1,46 +1,39 @@
-# 첫째 줄에 표의 크기 N과 합을 구해야 하는 횟수 M이 주어진다. (1 ≤ N ≤ 1024, 1 ≤ M ≤ 100,000) 
-# 둘째 줄부터 N개의 줄에는 표에 채워져 있는 수가 1행부터 차례대로 주어진다. 
-# 다음 M개의 줄에는 네 개의 정수 x1, y1, x2, y2 가 주어지며, (x1, y1)부터 (x2, y2)의 합을 구해 출력해야 한다. 
-# 표에 채워져 있는 수는 1,000보다 작거나 같은 자연수이다. (x1 ≤ x2, y1 ≤ y2)
-
-
-
 from sys import stdin
+
 N, M = map(int, stdin.readline().split())
 
-inputMap = []
-for i in range(N):
-    oneRow = list(map(int, input().split()))
-    oneRow.append(sum(oneRow))
+# inputMap = []
+# for i in range(N):
+#     inputMap.append(list(map(int, stdin.readline().split())))
+# 이거 대신에 밑에 코드
+
+inputMap = [[0] * (N+1)] 
+# 첫 번째 로우만 먼저 만들어주고 => 어차피 안쓰는 로우
+
+for _ in range(N):
+    oneRow = [0] + list(map(int, stdin.readline().split()))
+    # [0] 먼저 넣어두고 그 뒤로 추가, 어차피 0번 컬럼은 안쓰니까
     inputMap.append(oneRow)
+# print(inputMap)
+# 입력값이 1부터 시작하므로 (배열의 시작은 0이잖아) N+1 만큼 만들어준다.
+# 나는 이전에 입력값에다가 -1 을 해줘서 풀이를 진행했는데 이게 더 편할 수 있겠다.
+# 잘 익혀뒀다가 다음번에 써먹자 (컬럼, 로우 1부터 시작할 경우)
 
-# print("inputMap = ", inputMap)
+# 1. 행 별로 더하기
+for i in range(1, N + 1):
+    for j in range(1, N):
+        inputMap[i][j + 1] += inputMap[i][j]
 
-answerList = []
+# 2. 열 별로 더하기
+for j in range(1, N + 1):
+    for i in range(1, N):
+        inputMap[i + 1][j] += inputMap[i][j]
 
-for i in range(M):
-    x1, y1, x2, y2 = map(int, input().split())
-    x1 -= 1
-    y1 -= 1
-    x2 -= 1
-    y2 -= 1
-    sumVal = 0
+# N까지 합 다 만들어놨음 
+# 이제 빼줄 차례
 
-    for row in range(x1, x2+1):
-        # print("원래 로우의 합 = ", inputMap[row][-1])
-        rowSum = inputMap[row][-1] 
-        for col in range(0, N):
-            # print("row = ", row, " col = ", col)
-            if col < y1 or col > y2:
-                # print("row = ", row, " col = ", col, " 뺄 값 = ", inputMap[row][col])
-                rowSum -= inputMap[row][col]
-
-        # print("이번 로우에서의 최종 값은 ? ", rowSum)
-        sumVal += rowSum
-        # print("더해지고 나서 값은 ? ", sumVal)
-    answerList.append(sumVal)
-    # print("answerList = ", answerList)
-        
-for i in range(M):
-    print(answerList[i])
-
+for _ in range(M):
+    x1, y1, x2, y2 = map(int, stdin.readline().split())
+    # (x1, y1)에서 (x2, y2)까지의 합
+    # p[x2][y2] - p[x1 - 1][y2] - p[x2][y1 - 1] + p[x1 - 1][y1 - 1]
+    print(inputMap[x2][y2] - inputMap[x1 - 1][y2] - inputMap[x2][y1 - 1] + inputMap[x1 - 1][y1 - 1])
