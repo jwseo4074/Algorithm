@@ -6,6 +6,7 @@
 # 2 3 4
 # 2 4 5
 # 3 4 6
+
 import heapq
 import sys
 input = sys.stdin.readline
@@ -38,21 +39,29 @@ def dijkstra(start):
     heapq.heappush(q, (0, start))
     distance[start] = 0
     
-    while q: # 큐가 비어있지 않으면 계속 진행
+    while q:
+        # 큐가 비어있지 않으면 계속 진행
+        print( " 현재 큐 = ", q , "\n")
         # 가장 최단 거리가 짧은 노드에 대한 정보 꺼내기
-        dist, now  = heapq.heappop(q)
-
+        dist, nowNode  = heapq.heappop(q)
+        print("dist = ", dist, "nowNode = ", nowNode, "\n")
         # 현재 노드가 이미 처리된 적이 있는 노드라면 무시
-        if distance[now] < dist:
+        if distance[nowNode] < dist:
+            print("이미 처리된 적 있는 노드라서 continue 할거야", "\n")
+            print("( distance[", nowNode, "] = ", distance[nowNode] ,")  < ", dist ,"\n")
             continue
 
         # 현재 노드와 연결된 다른 인접한 노드들을 확인
-        for node in graph[now]:
+        for node in graph[nowNode]:
             cost = dist + node[1]
 
             # 현재 노드를 거쳐서 다른 노드로 이동하는 거리가 더 짧은 경우
             if cost < distance[node[0]]:    # cost < 시작->now의 인접노드 다이렉트 거리
                 distance[node[0]] = cost
+                
+                for i in range(1, N+1):
+                    print(i, " = ", distance[i])
+
                 heapq.heappush(q, (cost, node[0]))
 
 dijkstra(startNode)
