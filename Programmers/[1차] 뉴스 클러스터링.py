@@ -42,7 +42,6 @@ def solution(str1, str2):
     Adict = dict()
     Bdict = dict()
     
-   
 
     for a in A:
         if a not in Adict.keys():
