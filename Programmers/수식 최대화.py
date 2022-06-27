@@ -1,4 +1,3 @@
-from curses.ascii import isalnum
 from itertools import permutations
 
 def solution(expression):
