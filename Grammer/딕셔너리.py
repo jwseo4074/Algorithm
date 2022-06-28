@@ -32,10 +32,16 @@ d[1] = (3, 'a', 5)
 print("3. 딕셔너리 값 접근")
 print(f'd["a"] = {d["a"]}')
 print(f'd[999] = {d[999]}')
+print(f'd["99"] = {d["99"]}')
 print(f'd[1] = {d[1]}')
 
 # 숫자 키는 index와 헷갈릴 수 있음
+# print(f'd[(1,2)] = {d[(1,2)]}')
+
+print()
 print(f'd[(1,2)] = {d[(1,2)]}')
+print()
+
 print(f'd["wow"] = {d["wow"]}')
 print(f'd["BlockDMask"] = {d["BlockDMask"]}')
 

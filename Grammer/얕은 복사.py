@@ -1,8 +1,6 @@
 a = [1, 2, 3]
-
 b = a 
 # shallow copy
-
 b[0]= 5
 print(a)
 print(b)
