@@ -28,19 +28,11 @@ def solution(phone_book):
     for phone_number in phone_book:
         hash_map[phone_number] = 1
     
-    print(hash_map)
-
-    # hash_map = {'119': 1, '97674223': 1, '1195524421': 1}
-    
     for phone_number in phone_book:
-        # phone_number = 119
         temp = ""
-        # temp = ""
 
         for number in phone_number:
-            # number  = 1
             temp += number
-            # temp = 1
 
             if temp in hash_map and temp != phone_number:
                 answer = False
