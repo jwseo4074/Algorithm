@@ -28,7 +28,7 @@ def solution(numbers):
     # result =  [1, 7, 17, 71]
     answer = 0
     result = set(result)
-    print("result = ", result)
+    # print("result = ", result)
 
     for i in result:
         if checkFunc(i):
